@@ -1137,3 +1137,30 @@ function changeCase(el) {
   }
 }
 // window.addEventListener("keydown", changeCase);
+
+// Local storage saving function //
+
+function setLocalStorage() {
+  localStorage.setItem("language", lang);
+}
+window.addEventListener("beforeunload", setLocalStorage);
+
+function getLocalStorage() {
+  if (localStorage.getItem("language")) {
+    lang = localStorage.getItem("language");
+  }
+  fillKeys();
+  selectKeys();
+}
+fillKeys();
+
+window.addEventListener("load", getLocalStorage);
+window.addEventListener("load", fillKeys);
+window.addEventListener("load", selectKeys);
+window.addEventListener("load", typeLetters);
+typeLetters();
+window.addEventListener("keydown", pressKeyAnimation);
+window.addEventListener("keyup", releaseKeyAnimation);
+window.addEventListener("keydown", specialKeys);
+window.addEventListener("keyup", specialKeysShiftUp);
+window.addEventListener("keydown", changeCase);
