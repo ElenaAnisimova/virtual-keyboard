@@ -1,5 +1,4 @@
 const body = document.querySelector("body");
-// body.style.backgroundColor = "black";
 
 const mainDiv = document.createElement("main");
 body.appendChild(mainDiv);
@@ -611,7 +610,6 @@ function changeLang(...codes) {
   });
 }
 
-// fillKeys();
 changeLang("ControlLeft", "AltLeft");
 
 let space;
@@ -656,11 +654,6 @@ function selectKeys() {
   allKeys = document.querySelectorAll(".key");
 }
 selectKeys();
-
-// window.addEventListener("keydown", pressKeyAnimation);
-// window.addEventListener("keyup", releaseKeyAnimation);
-// window.addEventListener("keydown", (el) => console.log(el.key));
-// window.addEventListener("keydown", (el) => console.log(el.code));
 
 function pressKeyAnimation(el) {
   selectKeys();
@@ -834,22 +827,7 @@ function specialKeys(el) {
   shiftPress("ShiftLeft");
   shiftPress("ShiftRight");
 
-  // if (el.code === "AltLeft") {
-  //   leftAlt.classList.remove("active");
-  // }
-  // if (el.code === "AltRight") {
-  //   rightAlt.classList.remove("active");
-  // }
-  // if (el.code === "ControlLeft") {
-  //   leftCtrl.classList.remove("active");
-  // }
-  // if (el.code === "ControlRight") {
-  //   rightCtrl.classList.remove("active");
-  // }
-  // if (el.code === "MetaLeft") {
-  //   win.classList.remove("active");
-  // }
-  if (el.code == "Tab") {
+   if (el.code == "Tab") {
     el.preventDefault();
     const cursorPosition = text.selectionStart;
     const textAreaTxt = text.value;
@@ -901,9 +879,6 @@ function specialKeysShiftUp(el) {
   shiftPress("ShiftLeft");
   shiftPress("ShiftRight");
 }
-
-// window.addEventListener("keydown", specialKeys);
-// window.addEventListener("keyup", specialKeysShiftUp);
 
 function typeLetters() {
   selectKeys();
@@ -1089,7 +1064,6 @@ function typeLetters() {
   shiftMouseDownUp(rightShift, "mouseup");
 }
 
-// typeLetters();
 function clickKeyAnimation() {
   selectKeys();
   allKeys.forEach((keyLetter) => {
@@ -1135,7 +1109,6 @@ function changeCase(el) {
     console.log(letterCase);
   }
 }
-// window.addEventListener("keydown", changeCase);
 
 // Local storage saving function //
 
