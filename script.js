@@ -581,6 +581,7 @@ function fillKeys() {
     }
   }
 }
+
 //CHANGE THE LANGUAGE
 let lang = "en";
 function changeLang(...codes) {
@@ -612,7 +613,8 @@ function changeLang(...codes) {
 
 // fillKeys();
 changeLang("ControlLeft", "AltLeft");
-let spaceKey;
+
+let space;
 let leftShift;
 let rightShift;
 let leftAlt;
@@ -631,8 +633,6 @@ let arrowLeft;
 let arrowRight;
 let arrows;
 let allKeys;
-let firstRowSymbols;
-let firstRowNumbers;
 
 function selectKeys() {
   space = document.querySelector(".space");
@@ -654,8 +654,6 @@ function selectKeys() {
   arrowRight = document.querySelector(".arrow-right");
   arrows = document.querySelectorAll(".arrow");
   allKeys = document.querySelectorAll(".key");
-  firstRowSymbols = document.querySelectorAll(".first-row-symbols");
-  firstRowNumbers = document.querySelectorAll(".first-row-numbers");
 }
 selectKeys();
 
@@ -668,11 +666,11 @@ function pressKeyAnimation(el) {
   selectKeys();
 
   for (let i = 0; i < allKeys.length; i++) {
-    function pressK(code) {
+    const pressK = (code) => {
       if (el.code == code && allKeys[i].classList.contains(code)) {
         allKeys[i].classList.add("active");
       }
-    }
+    };
     pressK(el.code);
 
     if (
@@ -741,11 +739,11 @@ function releaseKeyAnimation(el) {
   selectKeys();
 
   for (let i = 0; i < allKeys.length; i++) {
-    function pressK(code) {
+    const pressK = (code) => {
       if (el.code == code && allKeys[i].classList.contains(code)) {
         allKeys[i].classList.remove("active");
       }
-    }
+    };
     pressK(el.code);
 
     if (
@@ -817,14 +815,14 @@ function specialKeys(el) {
     if (el.code == shiftBtn) {
       shiftState = true;
       if (letterCase == "lower") {
-        for (item of allKeys) {
+        for (let item of allKeys) {
           if (item.innerText.length == 1) {
             item.innerText = item.innerText.toUpperCase();
             letterCase = "upper";
           }
         }
       } else {
-        for (item of allKeys) {
+        for (let item of allKeys) {
           if (item.innerText.length == 1) {
             item.innerText = item.innerText.toLowerCase();
             letterCase = "lower";
@@ -884,14 +882,14 @@ function specialKeysShiftUp(el) {
     if (el.code == shiftBtn) {
       shiftState = false;
       if (letterCase == "lower") {
-        for (item of allKeys) {
+        for (let item of allKeys) {
           if (item.innerText.length == 1) {
             item.innerText = item.innerText.toUpperCase();
             letterCase = "upper";
           }
         }
       } else {
-        for (item of allKeys) {
+        for (let item of allKeys) {
           if (item.innerText.length == 1) {
             item.innerText = item.innerText.toLowerCase();
             letterCase = "lower";
@@ -906,6 +904,7 @@ function specialKeysShiftUp(el) {
 
 // window.addEventListener("keydown", specialKeys);
 // window.addEventListener("keyup", specialKeysShiftUp);
+
 function typeLetters() {
   selectKeys();
 
@@ -1028,14 +1027,14 @@ function typeLetters() {
     console.log("press caps");
     {
       if (letterCase == "lower") {
-        for (item of allKeys) {
+        for (let item of allKeys) {
           if (item.innerText.length == 1) {
             item.innerText = item.innerText.toUpperCase();
             letterCase = "upper";
           }
         }
       } else {
-        for (item of allKeys) {
+        for (let item of allKeys) {
           if (item.innerText.length == 1) {
             item.innerText = item.innerText.toLowerCase();
             letterCase = "lower";
@@ -1067,14 +1066,14 @@ function typeLetters() {
       }
       {
         if (letterCase == "lower") {
-          for (item of allKeys) {
+          for (let item of allKeys) {
             if (item.innerText.length == 1) {
               item.innerText = item.innerText.toUpperCase();
               letterCase = "upper";
             }
           }
         } else {
-          for (item of allKeys) {
+          for (let item of allKeys) {
             if (item.innerText.length == 1) {
               item.innerText = item.innerText.toLowerCase();
               letterCase = "lower";
@@ -1110,6 +1109,7 @@ function clickKeyAnimationUp() {
 }
 clickKeyAnimation();
 clickKeyAnimationUp();
+
 //CHANGE THE CASE
 let letterCase = "lower";
 
@@ -1118,14 +1118,14 @@ function changeCase(el) {
   if (el.code === "CapsLock") {
     {
       if (letterCase == "lower") {
-        for (item of keysLetters) {
+        for (let item of keysLetters) {
           if (item.innerText.length == 1) {
             item.innerText = item.innerText.toUpperCase();
             letterCase = "upper";
           }
         }
       } else {
-        for (item of keysLetters) {
+        for (let item of keysLetters) {
           if (item.innerText.length == 1) {
             item.innerText = item.innerText.toLowerCase();
             letterCase = "lower";
