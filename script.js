@@ -1110,3 +1110,30 @@ function clickKeyAnimationUp() {
 }
 clickKeyAnimation();
 clickKeyAnimationUp();
+//CHANGE THE CASE
+let letterCase = "lower";
+
+function changeCase(el) {
+  const keysLetters = document.querySelectorAll(".key");
+  if (el.code === "CapsLock") {
+    {
+      if (letterCase == "lower") {
+        for (item of keysLetters) {
+          if (item.innerText.length == 1) {
+            item.innerText = item.innerText.toUpperCase();
+            letterCase = "upper";
+          }
+        }
+      } else {
+        for (item of keysLetters) {
+          if (item.innerText.length == 1) {
+            item.innerText = item.innerText.toLowerCase();
+            letterCase = "lower";
+          }
+        }
+      }
+    }
+    console.log(letterCase);
+  }
+}
+// window.addEventListener("keydown", changeCase);
