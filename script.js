@@ -665,20 +665,20 @@ selectKeys();
 function pressKeyAnimation(el) {
   selectKeys();
 
-  for (let i = 0; i < allKeys.length; i++) {
+  for (let item of allKeys) {
     const pressK = (code) => {
-      if (el.code == code && allKeys[i].classList.contains(code)) {
-        allKeys[i].classList.add("active");
+      if (el.code == code && item.classList.contains(code)) {
+        item.classList.add("active");
       }
     };
     pressK(el.code);
 
     if (
-      allKeys[i].classList.contains("keys-first-row") &&
-      allKeys[i].classList.contains("key-symbols") &&
-      el.key == allKeys[i].innerText[2]
+      item.classList.contains("keys-first-row") &&
+      item.classList.contains("key-symbols") &&
+      el.key == item.innerText[2]
     ) {
-      allKeys[i].classList.add("active");
+      item.classList.add("active");
     }
 
     if (el.code === "Space") {
@@ -738,20 +738,20 @@ function pressKeyAnimation(el) {
 function releaseKeyAnimation(el) {
   selectKeys();
 
-  for (let i = 0; i < allKeys.length; i++) {
+  for (let item of allKeys) {
     const pressK = (code) => {
-      if (el.code == code && allKeys[i].classList.contains(code)) {
-        allKeys[i].classList.remove("active");
+      if (el.code == code && item.classList.contains(code)) {
+        item.classList.remove("active");
       }
     };
     pressK(el.code);
 
     if (
-      allKeys[i].classList.contains("keys-first-row") &&
-      allKeys[i].classList.contains("key-symbols") &&
-      el.key == allKeys[i].innerText[2]
+      item.classList.contains("keys-first-row") &&
+      item.classList.contains("key-symbols") &&
+      el.key == item.innerText[2]
     ) {
-      allKeys[i].classList.remove("active");
+      item.classList.remove("active");
     }
 
     if (el.code === "Space") {
@@ -907,7 +907,6 @@ function specialKeysShiftUp(el) {
 
 function typeLetters() {
   selectKeys();
-
   allKeys.forEach((keyLetter) => {
     keyLetter.addEventListener("click", () => {
       let cursorPosition = text.selectionStart;
