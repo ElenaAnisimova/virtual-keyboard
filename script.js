@@ -906,3 +906,207 @@ function specialKeysShiftUp(el) {
 
 // window.addEventListener("keydown", specialKeys);
 // window.addEventListener("keyup", specialKeysShiftUp);
+function typeLetters() {
+  selectKeys();
+
+  allKeys.forEach((keyLetter) => {
+    keyLetter.addEventListener("click", () => {
+      let cursorPosition = text.selectionStart;
+      // FOR LETTERS
+      if (keyLetter.classList.contains("key-letters")) {
+        text.value =
+          text.value.substring(0, cursorPosition) +
+          keyLetter.innerText +
+          text.value.substring(cursorPosition);
+        text.selectionStart = text.selectionEnd = cursorPosition + 1;
+      }
+      // FOR SYMBOLS
+      // WITHOUT SHIFT
+      if (keyLetter.classList.contains("key-symbols") && shiftState == false) {
+        text.value =
+          text.value.substring(0, cursorPosition) +
+          keyLetter.innerText[2] +
+          text.value.substring(cursorPosition);
+        text.selectionStart = text.selectionEnd = cursorPosition + 1;
+      }
+      // WITH SHIFT
+      if (keyLetter.classList.contains("key-symbols") && shiftState == true) {
+        text.value =
+          text.value.substring(0, cursorPosition) +
+          keyLetter.innerText[0] +
+          text.value.substring(cursorPosition);
+        text.selectionStart = text.selectionEnd = cursorPosition + 1;
+      }
+      // FOR SPECIAL KEYS
+      if (
+        keyLetter.classList.contains("special-symbols") &&
+        lang == "en" &&
+        shiftState == false
+      ) {
+        text.value =
+          text.value.substring(0, cursorPosition) +
+          keyLetter.innerText[2] +
+          text.value.substring(cursorPosition);
+        text.selectionStart = text.selectionEnd = cursorPosition + 1;
+      } else if (
+        keyLetter.classList.contains("special-symbols") &&
+        lang == "en" &&
+        shiftState == true
+      ) {
+        text.value =
+          text.value.substring(0, cursorPosition) +
+          keyLetter.innerText[0] +
+          text.value.substring(cursorPosition);
+        text.selectionStart = text.selectionEnd = cursorPosition + 1;
+      }
+      if (keyLetter.classList.contains("special-symbols") && lang == "ru") {
+        text.value =
+          text.value.substring(0, cursorPosition) +
+          keyLetter.innerText[0] +
+          text.value.substring(cursorPosition);
+        text.selectionStart = text.selectionEnd = cursorPosition + 1;
+      }
+    });
+  });
+
+  //  BACKPSPACE
+  backspace.addEventListener("click", () => {
+    console.log("press backspace");
+    let str = text.value;
+    const cursorPosition = text.selectionStart;
+    text.value =
+      str.substring(0, cursorPosition - 1) + str.substring(cursorPosition);
+    text.selectionStart = text.selectionEnd = cursorPosition - 1;
+  });
+
+  //  DELETE
+  del.addEventListener("click", () => {
+    console.log("press del");
+    let str = text.value;
+    const cursorPosition = text.selectionStart;
+    text.value =
+      str.substring(0, cursorPosition) + str.substring(cursorPosition + 1);
+    text.selectionStart = text.selectionEnd = cursorPosition;
+  });
+
+  // TAB
+  tab.addEventListener("click", () => {
+    const cursorPosition = text.selectionStart;
+    const textAreaTxt = text.value;
+    text.value =
+      textAreaTxt.substring(0, cursorPosition) +
+      "    " +
+      textAreaTxt.substring(cursorPosition);
+    text.selectionStart = text.selectionEnd = cursorPosition + 4;
+  });
+
+  //  ARROWS
+  arrows.forEach((arrowBtn) => {
+    arrowBtn.addEventListener("click", () => {
+      let cursorPosition = text.selectionStart;
+      text.value =
+        text.value.substring(0, cursorPosition) +
+        arrowBtn.innerText +
+        text.value.substring(cursorPosition);
+      text.selectionStart = text.selectionEnd = cursorPosition + 1;
+    });
+  });
+
+  // ENTER
+  enter.addEventListener("click", () => {
+    const cursorPosition = text.selectionStart;
+    const textAreaTxt = text.value;
+    text.value =
+      textAreaTxt.substring(0, cursorPosition) +
+      "\n" +
+      textAreaTxt.substring(cursorPosition);
+    text.selectionStart = text.selectionEnd = cursorPosition;
+  });
+
+  // CAPSlOCK
+  capslock.addEventListener("click", () => {
+    console.log("press caps");
+    {
+      if (letterCase == "lower") {
+        for (item of allKeys) {
+          if (item.innerText.length == 1) {
+            item.innerText = item.innerText.toUpperCase();
+            letterCase = "upper";
+          }
+        }
+      } else {
+        for (item of allKeys) {
+          if (item.innerText.length == 1) {
+            item.innerText = item.innerText.toLowerCase();
+            letterCase = "lower";
+          }
+        }
+      }
+    }
+  });
+
+  // SPACE
+  space.addEventListener("click", () => {
+    const cursorPosition = text.selectionStart;
+    const textAreaTxt = text.value;
+    text.value =
+      textAreaTxt.substring(0, cursorPosition) +
+      " " +
+      textAreaTxt.substring(cursorPosition);
+    text.selectionStart = text.selectionEnd = cursorPosition;
+  });
+
+  // SHIFT
+
+  function shiftMouseDownUp(el, event) {
+    el.addEventListener(event, () => {
+      if (event == "mousedown") {
+        shiftState = true;
+      } else {
+        shiftState = false;
+      }
+      {
+        if (letterCase == "lower") {
+          for (item of allKeys) {
+            if (item.innerText.length == 1) {
+              item.innerText = item.innerText.toUpperCase();
+              letterCase = "upper";
+            }
+          }
+        } else {
+          for (item of allKeys) {
+            if (item.innerText.length == 1) {
+              item.innerText = item.innerText.toLowerCase();
+              letterCase = "lower";
+            }
+          }
+        }
+      }
+      console.log(shiftState);
+    });
+  }
+  shiftMouseDownUp(leftShift, "mousedown");
+  shiftMouseDownUp(leftShift, "mouseup");
+  shiftMouseDownUp(rightShift, "mousedown");
+  shiftMouseDownUp(rightShift, "mouseup");
+}
+
+// typeLetters();
+function clickKeyAnimation() {
+  selectKeys();
+  allKeys.forEach((keyLetter) => {
+    keyLetter.addEventListener("mousedown", () => {
+      keyLetter.classList.add("active");
+    });
+  });
+}
+function clickKeyAnimationUp() {
+  selectKeys();
+  allKeys.forEach((keyLetter) => {
+    keyLetter.addEventListener("mouseup", () => {
+      keyLetter.classList.remove("active");
+    });
+  });
+}
+clickKeyAnimation();
+clickKeyAnimationUp();
