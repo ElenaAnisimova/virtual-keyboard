@@ -581,3 +581,328 @@ function fillKeys() {
     }
   }
 }
+//CHANGE THE LANGUAGE
+let lang = "en";
+function changeLang(...codes) {
+  let pressed = new Set();
+  document.addEventListener("keydown", function (event) {
+    pressed.add(event.code);
+    for (let code of codes) {
+      if (!pressed.has(code)) {
+        return;
+      }
+    }
+    pressed.clear();
+    if (lang == "en") {
+      lang = "ru";
+    } else {
+      lang = "en";
+    }
+    console.log(lang);
+    fillKeys();
+    selectKeys();
+    typeLetters();
+    clickKeyAnimation();
+    clickKeyAnimationUp();
+  });
+  document.addEventListener("keyup", function (event) {
+    pressed.delete(event.code);
+  });
+}
+
+// fillKeys();
+changeLang("ControlLeft", "AltLeft");
+let spaceKey;
+let leftShift;
+let rightShift;
+let leftAlt;
+let rightAlt;
+let leftCtrl;
+let rightCtrl;
+let tab;
+let backspace;
+let win;
+let enter;
+let capslock;
+let del;
+let arrowUp;
+let arrowDown;
+let arrowLeft;
+let arrowRight;
+let arrows;
+let allKeys;
+let firstRowSymbols;
+let firstRowNumbers;
+
+function selectKeys() {
+  space = document.querySelector(".space");
+  leftShift = document.querySelector(".left-shift");
+  rightShift = document.querySelector(".right-shift");
+  leftAlt = document.querySelector(".left-alt");
+  rightAlt = document.querySelector(".right-alt");
+  leftCtrl = document.querySelector(".left-ctrl");
+  rightCtrl = document.querySelector(".right-ctrl");
+  tab = document.querySelector(".tab");
+  backspace = document.querySelector(".backspace");
+  win = document.querySelector(".windows");
+  enter = document.querySelector(".enter");
+  capslock = document.querySelector(".capslock");
+  del = document.querySelector(".delete");
+  arrowUp = document.querySelector(".arrow-up");
+  arrowDown = document.querySelector(".arrow-down");
+  arrowLeft = document.querySelector(".arrow-left");
+  arrowRight = document.querySelector(".arrow-right");
+  arrows = document.querySelectorAll(".arrow");
+  allKeys = document.querySelectorAll(".key");
+  firstRowSymbols = document.querySelectorAll(".first-row-symbols");
+  firstRowNumbers = document.querySelectorAll(".first-row-numbers");
+}
+selectKeys();
+
+// window.addEventListener("keydown", pressKeyAnimation);
+// window.addEventListener("keyup", releaseKeyAnimation);
+// window.addEventListener("keydown", (el) => console.log(el.key));
+// window.addEventListener("keydown", (el) => console.log(el.code));
+
+function pressKeyAnimation(el) {
+  selectKeys();
+
+  for (let i = 0; i < allKeys.length; i++) {
+    function pressK(code) {
+      if (el.code == code && allKeys[i].classList.contains(code)) {
+        allKeys[i].classList.add("active");
+      }
+    }
+    pressK(el.code);
+
+    if (
+      allKeys[i].classList.contains("keys-first-row") &&
+      allKeys[i].classList.contains("key-symbols") &&
+      el.key == allKeys[i].innerText[2]
+    ) {
+      allKeys[i].classList.add("active");
+    }
+
+    if (el.code === "Space") {
+      space.classList.add("active");
+    }
+    if (el.code === "Enter") {
+      enter.classList.add("active");
+    }
+    if (el.code === "ShiftLeft") {
+      leftShift.classList.add("active");
+    }
+    if (el.code === "ShiftRight") {
+      rightShift.classList.add("active");
+    }
+    if (el.code === "AltLeft") {
+      leftAlt.classList.add("active");
+    }
+    if (el.code === "AltRight") {
+      rightAlt.classList.add("active");
+    }
+    if (el.code === "ControlLeft") {
+      leftCtrl.classList.add("active");
+    }
+    if (el.code === "ControlRight") {
+      rightCtrl.classList.add("active");
+    }
+    if (el.code === "MetaLeft") {
+      win.classList.add("active");
+    }
+    if (el.code === "Tab") {
+      tab.classList.add("active");
+    }
+    if (el.code === "CapsLock") {
+      capslock.classList.add("active");
+    }
+    if (el.code === "Backspace") {
+      backspace.classList.add("active");
+    }
+    if (el.code === "Delete") {
+      del.classList.add("active");
+    }
+    if (el.code === "ArrowUp") {
+      arrowUp.classList.add("active");
+    }
+    if (el.code === "ArrowLeft") {
+      arrowLeft.classList.add("active");
+    }
+    if (el.code === "ArrowRight") {
+      arrowRight.classList.add("active");
+    }
+    if (el.code === "ArrowDown") {
+      arrowDown.classList.add("active");
+    }
+  }
+}
+
+function releaseKeyAnimation(el) {
+  selectKeys();
+
+  for (let i = 0; i < allKeys.length; i++) {
+    function pressK(code) {
+      if (el.code == code && allKeys[i].classList.contains(code)) {
+        allKeys[i].classList.remove("active");
+      }
+    }
+    pressK(el.code);
+
+    if (
+      allKeys[i].classList.contains("keys-first-row") &&
+      allKeys[i].classList.contains("key-symbols") &&
+      el.key == allKeys[i].innerText[2]
+    ) {
+      allKeys[i].classList.remove("active");
+    }
+
+    if (el.code === "Space") {
+      space.classList.remove("active");
+    }
+    if (el.code === "Enter") {
+      enter.classList.remove("active");
+    }
+    if (el.code === "ShiftLeft") {
+      leftShift.classList.remove("active");
+    }
+    if (el.code === "ShiftRight") {
+      rightShift.classList.remove("active");
+    }
+    if (el.code === "AltLeft") {
+      leftAlt.classList.remove("active");
+    }
+    if (el.code === "AltRight") {
+      rightAlt.classList.remove("active");
+    }
+    if (el.code === "ControlLeft") {
+      leftCtrl.classList.remove("active");
+    }
+    if (el.code === "ControlRight") {
+      rightCtrl.classList.remove("active");
+    }
+    if (el.code === "MetaLeft") {
+      win.classList.remove("active");
+    }
+    if (el.code === "Tab") {
+      tab.classList.remove("active");
+    }
+    if (el.code === "CapsLock") {
+      capslock.classList.remove("active");
+    }
+    if (el.code === "Backspace") {
+      backspace.classList.remove("active");
+    }
+    if (el.code === "Delete") {
+      del.classList.remove("active");
+    }
+    if (el.code === "ArrowUp") {
+      arrowUp.classList.remove("active");
+    }
+    if (el.code === "ArrowLeft") {
+      arrowLeft.classList.remove("active");
+    }
+    if (el.code === "ArrowRight") {
+      arrowRight.classList.remove("active");
+    }
+    if (el.code === "ArrowDown") {
+      arrowDown.classList.remove("active");
+    }
+  }
+}
+
+let shiftState = false;
+
+function specialKeys(el) {
+  function shiftPress(shiftBtn) {
+    if (el.code == shiftBtn) {
+      shiftState = true;
+      if (letterCase == "lower") {
+        for (item of allKeys) {
+          if (item.innerText.length == 1) {
+            item.innerText = item.innerText.toUpperCase();
+            letterCase = "upper";
+          }
+        }
+      } else {
+        for (item of allKeys) {
+          if (item.innerText.length == 1) {
+            item.innerText = item.innerText.toLowerCase();
+            letterCase = "lower";
+          }
+        }
+      }
+    }
+  }
+  shiftPress("ShiftLeft");
+  shiftPress("ShiftRight");
+
+  // if (el.code === "AltLeft") {
+  //   leftAlt.classList.remove("active");
+  // }
+  // if (el.code === "AltRight") {
+  //   rightAlt.classList.remove("active");
+  // }
+  // if (el.code === "ControlLeft") {
+  //   leftCtrl.classList.remove("active");
+  // }
+  // if (el.code === "ControlRight") {
+  //   rightCtrl.classList.remove("active");
+  // }
+  // if (el.code === "MetaLeft") {
+  //   win.classList.remove("active");
+  // }
+  if (el.code == "Tab") {
+    el.preventDefault();
+    const cursorPosition = text.selectionStart;
+    const textAreaTxt = text.value;
+    text.value =
+      textAreaTxt.substring(0, cursorPosition) +
+      "    " +
+      textAreaTxt.substring(cursorPosition);
+    text.selectionStart = text.selectionEnd = cursorPosition + 4;
+  }
+
+  function typeArrow(arrow, arrowText) {
+    if (el.code == arrow) {
+      el.preventDefault();
+      let cursorPosition = text.selectionStart;
+      text.value =
+        text.value.substring(0, cursorPosition) +
+        arrowText +
+        text.value.substring(cursorPosition);
+      text.selectionStart = text.selectionEnd = cursorPosition + 1;
+    }
+  }
+  typeArrow("ArrowDown", "▼");
+  typeArrow("ArrowUp", "▲");
+  typeArrow("ArrowLeft", "◄");
+  typeArrow("ArrowRight", "►");
+}
+
+function specialKeysShiftUp(el) {
+  function shiftPress(shiftBtn) {
+    if (el.code == shiftBtn) {
+      shiftState = false;
+      if (letterCase == "lower") {
+        for (item of allKeys) {
+          if (item.innerText.length == 1) {
+            item.innerText = item.innerText.toUpperCase();
+            letterCase = "upper";
+          }
+        }
+      } else {
+        for (item of allKeys) {
+          if (item.innerText.length == 1) {
+            item.innerText = item.innerText.toLowerCase();
+            letterCase = "lower";
+          }
+        }
+      }
+    }
+  }
+  shiftPress("ShiftLeft");
+  shiftPress("ShiftRight");
+}
+
+// window.addEventListener("keydown", specialKeys);
+// window.addEventListener("keyup", specialKeysShiftUp);
