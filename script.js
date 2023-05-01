@@ -1163,3 +1163,4 @@ window.addEventListener("keyup", releaseKeyAnimation);
 window.addEventListener("keydown", specialKeys);
 window.addEventListener("keyup", specialKeysShiftUp);
 window.addEventListener("keydown", changeCase);
+console.log("Особенности ES6, использованные в коде: стрелочные функции, тип данных Set и его методы, циклы for... of, оператор расширения,переменные let и const");
