@@ -1133,6 +1133,8 @@ window.addEventListener("load", typeLetters);
 typeLetters();
 window.addEventListener("keydown", pressKeyAnimation);
 window.addEventListener("keyup", releaseKeyAnimation);
+window.addEventListener("keydown", clickKeyAnimation);
+window.addEventListener("keyup", clickKeyAnimationUp);
 window.addEventListener("keydown", specialKeys);
 window.addEventListener("keyup", specialKeysShiftUp);
 window.addEventListener("keydown", changeCase);
