@@ -54,10 +54,32 @@ function fillKeys() {
     keysFirstRow.className = "keys-first-row key";
     if (i == 0) {
       keysFirstRow.className = "keys-first-row key special-symbols Backquote";
+    } else if (i === 1) {
+      keysFirstRow.className = "keys-first-row key key-symbols Digit1";
+    } else if (i === 2) {
+      keysFirstRow.className = "keys-first-row key  key-symbols Digit2";
+    } else if (i === 3) {
+      keysFirstRow.className = "keys-first-row key  key-symbols Digit3";
+    } else if (i === 4) {
+      keysFirstRow.className = "keys-first-row key  key-symbols Digit4";
+    } else if (i === 5) {
+      keysFirstRow.className = "keys-first-row key  key-symbols Digit5";
+    } else if (i === 6) {
+      keysFirstRow.className = "keys-first-row key  key-symbols Digit6";
+    } else if (i === 7) {
+      keysFirstRow.className = "keys-first-row key  key-symbols Digit7";
+    } else if (i === 8) {
+      keysFirstRow.className = "keys-first-row key  key-symbols Digit8";
+    } else if (i === 9) {
+      keysFirstRow.className = "keys-first-row key  key-symbols Digit9";
+    } else if (i === 10) {
+      keysFirstRow.className = "keys-first-row key  key-symbols Digit0";
+    } else if (i === 11) {
+      keysFirstRow.className = "keys-first-row key  key-symbols Minus";
+    } else if (i === 12) {
+      keysFirstRow.className = "keys-first-row key  key-symbols Equal";
     } else if (i === 13) {
       keysFirstRow.className = "keys-first-row key backspace";
-    } else {
-      keysFirstRow.className = "keys-first-row key key-symbols";
     }
     firstRow.append(keysFirstRow);
 
@@ -655,6 +677,51 @@ function selectKeys() {
 }
 selectKeys();
 
+function typeLettersPress(el) {
+  selectKeys();
+
+  for (let item of allKeys) {
+    const pressK = (code) => {
+     
+      let cursorPosition = text.selectionStart;
+      if (item.classList.contains(code) && item.innerText.length == 1) {
+        el.preventDefault();
+        text.value =
+          text.value.substring(0, cursorPosition) +
+          item.innerText[0] +
+          text.value.substring(cursorPosition);
+        text.selectionStart = text.selectionEnd = cursorPosition + 1;
+      }
+
+      if (
+        item.classList.contains(code) &&
+        item.innerText.length == 3 &&
+        shiftState == false
+      ) {
+        el.preventDefault();
+        text.value =
+          text.value.substring(0, cursorPosition) +
+          item.innerText[2] +
+          text.value.substring(cursorPosition);
+        text.selectionStart = text.selectionEnd = cursorPosition + 1;
+      }
+      if (
+        item.classList.contains(code) &&
+        item.innerText.length == 3 &&
+        shiftState == true
+      ) {
+        el.preventDefault();
+        text.value =
+          text.value.substring(0, cursorPosition) +
+          item.innerText[0] +
+          text.value.substring(cursorPosition);
+        text.selectionStart = text.selectionEnd = cursorPosition + 1;
+      }
+    };
+    pressK(el.code);
+  }
+}
+
 function pressKeyAnimation(el) {
   selectKeys();
 
@@ -827,7 +894,7 @@ function specialKeys(el) {
   shiftPress("ShiftLeft");
   shiftPress("ShiftRight");
 
-   if (el.code == "Tab") {
+  if (el.code == "Tab") {
     el.preventDefault();
     const cursorPosition = text.selectionStart;
     const textAreaTxt = text.value;
@@ -1030,7 +1097,6 @@ function typeLetters() {
   });
 
   // SHIFT
-
   function shiftMouseDownUp(el, event) {
     el.addEventListener(event, () => {
       if (event == "mousedown") {
@@ -1131,6 +1197,8 @@ window.addEventListener("load", fillKeys);
 window.addEventListener("load", selectKeys);
 window.addEventListener("load", typeLetters);
 typeLetters();
+// typeLettersPress();
+window.addEventListener("keydown", typeLettersPress);
 window.addEventListener("keydown", pressKeyAnimation);
 window.addEventListener("keyup", releaseKeyAnimation);
 window.addEventListener("keydown", clickKeyAnimation);
@@ -1138,4 +1206,6 @@ window.addEventListener("keyup", clickKeyAnimationUp);
 window.addEventListener("keydown", specialKeys);
 window.addEventListener("keyup", specialKeysShiftUp);
 window.addEventListener("keydown", changeCase);
-console.log("Особенности ES6, использованные в коде: стрелочные функции, тип данных Set и его методы, циклы for... of, оператор расширения,переменные let и const");
+console.log(
+  "Особенности ES6, использованные в коде: стрелочные функции, тип данных Set и его методы, циклы for... of, оператор расширения,переменные let и const"
+);
