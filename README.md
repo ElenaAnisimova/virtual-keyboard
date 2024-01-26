@@ -1,5 +1,5 @@
 # Виртуальная клавиатура для Windows / Virtual keyboard for Windows 
-**Tech Stack: JS/HTML 5/CSS/Webpack**
+**Tech Stack: JS/HTML 5/CSS/Webpack/ESLint `(eslint-config-airbnb-base)`**
 
 ## Deploy: <a href="https://elenaanisimova.github.io/virtual-keyboard/" target="_blank">Virtual keyboard</a>
 
